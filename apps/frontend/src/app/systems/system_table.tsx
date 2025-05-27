@@ -1,6 +1,6 @@
 "use client";
 
-import { SystemFormData } from "../types/system";
+import {SystemFormData} from "../types/system";
 
 interface SystemTableProps {
     systems: SystemFormData[];
@@ -9,15 +9,17 @@ interface SystemTableProps {
 }
 
 export default function SystemTable({
-    systems,
-    onEdit,
-    onToggleStatus,
-}: SystemTableProps) {
+                                        systems,
+                                        onEdit,
+                                        onToggleStatus,
+                                    }: SystemTableProps) {
     return (
-        <div className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/10">
+        <div
+            className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/10">
             {/* Table Header */}
             <div className="bg-white/5 backdrop-blur-sm px-6 py-4 border-b border-white/10">
-                <div className="grid grid-cols-11 gap-4 text-xs font-semibold text-white/70 uppercase tracking-wider">
+                <div
+                    className="grid grid-cols-11 gap-4 text-xs font-semibold text-white/70 uppercase tracking-wider">
                     <div>System ID</div>
                     <div>Display Name</div>
                     <div>Namespace</div>
@@ -69,7 +71,8 @@ export default function SystemTable({
                                     return (
                                         <div className="flex items-center justify-center gap-1 text-sm">
                                             <div className="flex items-center gap-1">
-                                                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                                                <div
+                                                    className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                                                 <span className="text-emerald-400 font-semibold">{running}</span>
                                             </div>
                                             <span className="text-white/30">/</span>
@@ -85,8 +88,8 @@ export default function SystemTable({
                             {/* Status Icons */}
                             <div className="text-center">
                                 <div className={`w-6 h-6 rounded-lg flex items-center justify-center mx-auto ${
-                                    sys.kafkaEnabled 
-                                        ? 'bg-emerald-500/20 text-emerald-400' 
+                                    sys.kafkaEnabled
+                                        ? 'bg-emerald-500/20 text-emerald-400'
                                         : 'bg-red-500/20 text-red-400'
                                 }`}>
                                     {sys.kafkaEnabled ? '✓' : '✕'}
@@ -95,8 +98,8 @@ export default function SystemTable({
 
                             <div className="text-center">
                                 <div className={`w-6 h-6 rounded-lg flex items-center justify-center mx-auto ${
-                                    sys.mysqlEnabled 
-                                        ? 'bg-emerald-500/20 text-emerald-400' 
+                                    sys.mysqlEnabled
+                                        ? 'bg-emerald-500/20 text-emerald-400'
                                         : 'bg-red-500/20 text-red-400'
                                 }`}>
                                     {sys.mysqlEnabled ? '✓' : '✕'}
@@ -105,8 +108,8 @@ export default function SystemTable({
 
                             <div className="text-center">
                                 <div className={`w-6 h-6 rounded-lg flex items-center justify-center mx-auto ${
-                                    sys.redisEnabled 
-                                        ? 'bg-emerald-500/20 text-emerald-400' 
+                                    sys.redisEnabled
+                                        ? 'bg-emerald-500/20 text-emerald-400'
                                         : 'bg-red-500/20 text-red-400'
                                 }`}>
                                     {sys.redisEnabled ? '✓' : '✕'}
@@ -115,8 +118,8 @@ export default function SystemTable({
 
                             <div className="text-center">
                                 <div className={`w-6 h-6 rounded-lg flex items-center justify-center mx-auto ${
-                                    sys.ingressEnabled 
-                                        ? 'bg-emerald-500/20 text-emerald-400' 
+                                    sys.ingressEnabled
+                                        ? 'bg-emerald-500/20 text-emerald-400'
                                         : 'bg-red-500/20 text-red-400'
                                 }`}>
                                     {sys.ingressEnabled ? '✓' : '✕'}
@@ -125,8 +128,8 @@ export default function SystemTable({
 
                             <div className="text-center">
                                 <div className={`w-6 h-6 rounded-lg flex items-center justify-center mx-auto ${
-                                    sys.tracingEnabled 
-                                        ? 'bg-emerald-500/20 text-emerald-400' 
+                                    sys.tracingEnabled
+                                        ? 'bg-emerald-500/20 text-emerald-400'
                                         : 'bg-red-500/20 text-red-400'
                                 }`}>
                                     {sys.tracingEnabled ? '✓' : '✕'}
@@ -135,11 +138,12 @@ export default function SystemTable({
 
                             {/* Status Badge */}
                             <div>
-                                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
-                                    sys.status === "inactive"
-                                        ? "bg-gray-500/20 text-gray-400 border-gray-500/30"
-                                        : "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
-                                }`}>
+                                <span
+                                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
+                                        sys.status === "inactive"
+                                            ? "bg-gray-500/20 text-gray-400 border-gray-500/30"
+                                            : "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                                    }`}>
                                     <div className={`w-1.5 h-1.5 rounded-full mr-2 ${
                                         sys.status === "inactive" ? "bg-gray-400" : "bg-emerald-400 animate-pulse"
                                     }`}></div>

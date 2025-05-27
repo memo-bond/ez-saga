@@ -22,6 +22,7 @@ export interface SystemFormData {
     ingressHostname?: string;
 
     tracingEnabled: boolean;
+    status: string;
 
     // ✅ Add this field:
     services?: {

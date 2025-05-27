@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/maven,jetbrains,java,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=maven,jetbrains,java,node
+apps/frontend/.idea
+apps/frontend/node_modules
+apps/frontend/.next
 
 ### Java ###
 # Compiled class file
@@ -163,8 +164,7 @@ buildNumber.properties
 
 ### Node ###
 # Logs
-apps/frontend/node_modules
-apps/frontend/.next
+
 logs
 npm-debug.log*
 yarn-debug.log*
