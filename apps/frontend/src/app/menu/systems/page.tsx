@@ -3,26 +3,26 @@
 import { useState } from "react";
 import CreateSystemModal from "./create_system_modal";
 import SystemTable from "./system_table";
-import { SystemFormData } from "../types/system";
-import { useUIStore } from "@/stores/ui_store";
+import { SystemFormData } from "@/types/system";
+import { useSidebarStore } from "@/stores/global_store";
 import {AppLayout} from "@/app/layout/app_layout";
 
 export default function SystemManagerPage() {
   const [systems, setSystems] = useState<SystemFormData[]>([]);
   const [openModal, setOpenModal] = useState(false);
-  const [editData, setEditData] = useState<SystemFormData | null>(null);
+  const [selectedSystem, setSelectedSystem] = useState<SystemFormData | null>(null);
 
-  const activeTab = useUIStore((s) => s.activeTab);
+  const activeTab = useSidebarStore((s) => s.activeTab);
 
-  // Open modal for new system
+  // Open modal for new systems
   const handleNew = () => {
-    setEditData(null);
+    setSelectedSystem(null);
     setOpenModal(true);
   };
 
   // Open modal for edit
   const handleEdit = (system: SystemFormData) => {
-    setEditData(system);
+    setSelectedSystem(system);
     setOpenModal(true);
   };
 
@@ -37,7 +37,7 @@ export default function SystemManagerPage() {
     );
   };
 
-  // Save or update system
+  // Save or update systems
   const handleSave = (form: SystemFormData) => {
     setSystems((prev) => {
       const exists = prev.find((s) => s.systemId === form.systemId);
@@ -73,7 +73,7 @@ export default function SystemManagerPage() {
                   <CreateSystemModal
                       open={openModal}
                       onClose={() => setOpenModal(false)}
-                      initialData={editData}
+                      initialData={selectedSystem}
                       onSave={handleSave}
                   />
               )}

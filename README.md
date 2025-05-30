@@ -1,8 +1,12 @@
-# 🧩 Easy Saga — Infra & Saga Orchestration Platform
+# 🧩 EZ Saga — Infra & Saga Orchestration Platform
 
-**Easy Saga** is a developer-first platform to define, manage, and deploy distributed systems with the **Saga Compensation Pattern** — all through a clean, modern UI.
+## 🧠 Goal of Admin Dashboard
 
-No CLI. No YAML editing. Just build systems and services, choose your infrastructure (Redis, MySQL, Kafka, Grafana...), and let Easy Saga generate and manage everything — from Velocity-based Kubernetes manifests to Kafka-driven orchestration.
+- Provide a high-level overview, actionable insights, and quick navigation into grouped objects like Sagas, Services, and Systems.
+
+**EZ Saga** is a developer-first platform to define, manage, and deploy distributed systems with the **Saga Compensation Pattern** — all through a clean, modern UI.
+
+No CLI. No YAML editing. Just build systems and services, choose your infrastructure (Redis, MySQL, Kafka, Grafana...), and let EZ Saga generate and manage everything — from Velocity-based Kubernetes manifests to Kafka-driven orchestration.
 
 ---
 
@@ -60,10 +64,10 @@ No CLI. No YAML editing. Just build systems and services, choose your infrastruc
 
 ---
 
-## ✅ Easy Saga Project Checklist
+## ✅ EZ Saga Project Checklist
 
 ### ⏳ In Progress
-- [ ] Easy Saga Admin
+- [ ] EZ Saga Admin
 
 ### 🍀 Backlog
 - [ ] Backend API
@@ -76,7 +80,7 @@ No CLI. No YAML editing. Just build systems and services, choose your infrastruc
 
 ## 🤝 Contribute
 
-Easy Saga is built for platform teams, DevOps engineers, and backend developers who want to stop hand-wiring infra and start focusing on business logic.
+EZ Saga is built for platform teams, DevOps engineers, and backend developers who want to stop hand-wiring infra and start focusing on business logic.
 
 
 ## 💖 Credit
