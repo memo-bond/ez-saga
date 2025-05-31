@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "easy-saga",
-  description: "Saga management platform",
+  title: "EZ Saga Admin",
+  description: "Easy saga management platform",
 };
 
 export default function RootLayout({
