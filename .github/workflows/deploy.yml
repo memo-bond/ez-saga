@@ -48,3 +48,4 @@ jobs:
         with:
           branch: gh-pages
           folder: apps/frontend/out
+          cname: memo.bond
