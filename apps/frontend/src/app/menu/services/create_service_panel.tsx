@@ -14,7 +14,7 @@ interface Props {
 export default function CreateServicePanel({ initialData, onClose, onSave }: Props) {
   const [form, setForm] = useState<Service>(initialData);
 
-  const handleChange = (field: keyof Service, value: any) => {
+  const handleChange = (field: keyof Service, value: string|boolean|number) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 

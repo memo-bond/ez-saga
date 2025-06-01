@@ -114,6 +114,7 @@ interface ModalWrapperProps {
     children: React.ReactNode;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ModalWrapper = ({ open, onClose, children }: ModalWrapperProps) => {
     if (!open) return null;
     return (

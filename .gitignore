@@ -1,6 +1,7 @@
 apps/frontend/.idea
 apps/frontend/node_modules
 apps/frontend/.next
+apps/frontend/out
 
 ### Java ###
 # Compiled class file

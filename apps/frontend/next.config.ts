@@ -1,7 +1,14 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const isProd = process.env.NODE_ENV === 'production';
+
+const nextConfig = {
+  output: 'export',
+  distDir: 'out',
+  images: {
+    unoptimized: true,
+  },
+  basePath: isProd ? '/ez-saga' : '',
 };
 
-export default nextConfig;
+module.exports = nextConfig;

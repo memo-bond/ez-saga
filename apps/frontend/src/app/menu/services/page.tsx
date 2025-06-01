@@ -9,6 +9,8 @@ import {Service, ServiceStatus, ServiceType} from "@/types/service";
 import ServiceTable from "./service_table";
 import CreateServicePanel from "./create_service_panel";
 
+export const dynamic = "force-static";
+
 export default function ServiceManagerPage() {
     const [services, setServices] = useState<Service[]>([]);
     const [selectedService, setSelectedService] = useState<Service | null>(null);

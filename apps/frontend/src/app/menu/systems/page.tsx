@@ -7,6 +7,8 @@ import { SystemFormData } from "@/types/system";
 import { useSidebarStore } from "@/stores/global_store";
 import {AppLayout} from "@/app/layout/app_layout";
 
+export const dynamic = "force-static";
+
 export default function SystemManagerPage() {
   const [systems, setSystems] = useState<SystemFormData[]>([]);
   const [openModal, setOpenModal] = useState(false);

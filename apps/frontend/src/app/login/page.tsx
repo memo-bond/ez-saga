@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/context/auth_context";
 
+export const dynamic = "force-static";
+
 export default function LoginPage() {
   const router = useRouter();
   const { login } = useAuth();
