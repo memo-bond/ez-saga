@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -45,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: apps/frontend/out
 
 # Deploy job
   deploy:
