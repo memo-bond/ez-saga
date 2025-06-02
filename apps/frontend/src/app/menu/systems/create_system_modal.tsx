@@ -1,8 +1,16 @@
 "use client";
 
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {SystemFormData} from "@/types/system";
-import {InputField, ToggleCheckbox, SectionHeader, GradientButton, ModalWrapper, TextAreaField} from "@/ui/components";
+import {
+    InputField,
+    ToggleCheckbox,
+    SectionHeader,
+    PrimaryButton,
+    ModalWrapper,
+    TextAreaField,
+    Button
+} from "@/ui/components";
 
 interface CreateSystemModalProps {
     open: boolean;
@@ -58,6 +66,7 @@ export default function CreateSystemModal({open, onClose, initialData, onSave}: 
             </div>
 
             <div className="p-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
+
                 <form onSubmit={handleSubmit} className="space-y-8">
                     <section className="space-y-4">
                         <SectionHeader title="Basic Information" colorClass="text-cyan-400 border-cyan-400/30"/>
@@ -147,16 +156,16 @@ export default function CreateSystemModal({open, onClose, initialData, onSave}: 
                                         onChange={(checked) => handleChange("tracingEnabled", checked)} color="green"/>
                     </section>
                 </form>
+
             </div>
 
             <div className="bg-slate-800/50 border-t border-white/10 px-6 py-4 flex justify-end gap-3">
-                <button type="button" onClick={onClose}
-                        className="px-6 py-2.5 text-gray-300 border border-gray-600 rounded-lg hover:bg-gray-700 hover:text-white transition-all duration-200">
+                <Button type="button" onClick={onClose}>
                     Cancel
-                </button>
-                <GradientButton type="submit" onClick={handleSubmit}>
+                </Button>
+                <PrimaryButton type="submit" onClick={handleSubmit}>
                     {initialData ? "Update System" : "Create System"}
-                </GradientButton>
+                </PrimaryButton>
             </div>
         </ModalWrapper>
     );

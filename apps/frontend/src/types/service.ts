@@ -12,7 +12,7 @@ export interface Service {
     // REST-specific config
     timeoutMs?: number;               // Optional
     retryCount?: number;
-    retryStrategy?: 'exponential' | 'fixed' | 'linear';
+    retryStrategy?: 'exponential' | 'fixed' | 'linear' | undefined;
     circuitBreakerEnabled?: boolean;
     fallbackUrl?: string;
 

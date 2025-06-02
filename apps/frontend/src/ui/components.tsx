@@ -1,6 +1,5 @@
 "use client"
 
-// input_field.tsx
 import React from "react";
 import clsx from "clsx";
 
@@ -23,6 +22,7 @@ export const InputField = ({ label, className, ...props }: InputFieldProps) => (
         />
     </div>
 );
+
 
 interface TextAreaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: string;
@@ -81,7 +81,6 @@ export const ToggleCheckbox = ({ checked, onChange, label, color = "green", clas
 };
 
 
-// section_header.tsx
 interface SectionHeaderProps {
     title: string;
     colorClass: string; // e.g., 'text-cyan-400 border-cyan-400/30'
@@ -92,22 +91,34 @@ export const SectionHeader = ({ title, colorClass }: SectionHeaderProps) => (
 );
 
 
-// gradient_button.tsx
-interface GradientButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
 }
 
-export const GradientButton = ({ children, ...props }: GradientButtonProps) => (
+export const PrimaryButton = ({ children, ...props }: PrimaryButtonProps) => (
     <button
         {...props}
-        className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
+        // className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
+        className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-2 rounded-xl hover:from-cyan-400 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 shadow-md"
+    >
+        {children}
+    </button>
+);
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    children: React.ReactNode;
+}
+
+export const Button = ({ children, ...props }: ButtonProps) => (
+    <button
+        {...props}
+        className="px-6 py-2.5 text-gray-300 border border-gray-600 rounded-lg hover:bg-gray-700 hover:text-white transition-all duration-200"
     >
         {children}
     </button>
 );
 
 
-// modal_wrapper.tsx
 interface ModalWrapperProps {
     open: boolean;
     onClose: () => void;

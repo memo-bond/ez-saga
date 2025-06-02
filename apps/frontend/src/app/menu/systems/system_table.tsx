@@ -14,7 +14,7 @@ export default function SystemTable({
                                         onToggleStatus,
                                     }: SystemTableProps) {
     return (
-        <div className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/10">
+        <div className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl shadow-purple-500/10">
             {/* Table Header */}
             <div className="bg-white/5 backdrop-blur-sm px-6 py-4 border-b border-white/10">
                 <div

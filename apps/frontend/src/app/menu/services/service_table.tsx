@@ -1,19 +1,21 @@
 "use client";
 
-import { Service } from '@/types/service';
-import { Button } from '@/components/ui/button';
+import {Service} from '@/types/service';
+import {PrimaryButton} from "@/ui/components";
 
 interface Props {
     services: Service[];
     onView: (service: Service) => void;
 }
 
-export default function ServiceTable({ services, onView }: Props) {
+export default function ServiceTable({services, onView}: Props) {
     return (
-        <div className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/10">
+        <div
+            className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl shadow-purple-500/10">
             {/* Table Header */}
             <div className="bg-white/5 backdrop-blur-sm px-6 py-4 border-b border-white/10">
                 <div className="grid grid-cols-11 gap-4 text-xs font-semibold text-white/70 uppercase tracking-wider">
+                    <div>Service ID</div>
                     <div>Name</div>
                     <div>Type</div>
                     <div>Status</div>
@@ -35,8 +37,9 @@ export default function ServiceTable({ services, onView }: Props) {
                     services.map((svc) => (
                         <div
                             key={svc.id}
-                            className="grid grid-cols-6 gap-4 px-6 py-4 items-center hover:bg-white/5 transition-all duration-300 group hover:shadow-lg hover:shadow-purple-500/5 hover:translate-x-1"
+                            className="grid grid-cols-7 gap-4 px-6 py-4 items-center hover:bg-white/5 transition-all duration-300 group hover:shadow-2xl hover:shadow-purple-500/5 hover:translate-x-1"
                         >
+                            <div className="text-white font-semibold">{svc.id}</div>
                             <div className="text-white font-semibold">{svc.name}</div>
                             <div className="text-white/60 text-sm italic">{svc.type}</div>
                             <div>
@@ -64,14 +67,12 @@ export default function ServiceTable({ services, onView }: Props) {
                             <div className="text-white/70 text-sm">{svc.systemId || '-'}</div>
                             <div className="text-white/50 text-xs">{svc.updatedAt?.toString() || '-'}</div>
                             <div className="flex gap-2">
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
+                                <PrimaryButton
                                     className="border border-cyan-400/30 text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 hover:border-cyan-400/50 transition-all duration-200 hover:scale-105"
                                     onClick={() => onView(svc)}
                                 >
                                     View
-                                </Button>
+                                </PrimaryButton>
                             </div>
                         </div>
                     ))
