@@ -51,6 +51,6 @@ jobs:
           export VERCEL_ORG_ID=team_yYZLMzdCB34ZGt0X8OJOR6Ry
           export VERCEL_PROJECT_ID=prj_d302gwf5NEVV8t5TayQilFL7hAvW
           export VERCEL_TOKEN=EmSaY2n3oKuRJdJR7iAoM9ju
-          vercel pull --yes
-          vercel build --prod
+          vercel pull --yes --token=$VERCEL_TOKEN
+          vercel build --prod --token=$VERCEL_TOKEN
           vercel deploy --prod --prebuilt --yes --token=$VERCEL_TOKEN
