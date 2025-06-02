@@ -46,14 +46,11 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      - name: Vercel Build
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Deploy to Vercel (Static Export)
-        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Build and deploy to Vercel
+        run: |
+          export VERCEL_ORG_ID=team_yYZLMzdCB34ZGt0X8OJOR6Ry
+          export VERCEL_PROJECT_ID=prj_d302gwf5NEVV8t5TayQilFL7hAvW
+          export VERCEL_TOKEN=EmSaY2n3oKuRJdJR7iAoM9ju
+          vercel pull --yes
+          vercel build --prod
+          vercel deploy --prod --prebuilt --yes --token=$VERCEL_TOKEN
