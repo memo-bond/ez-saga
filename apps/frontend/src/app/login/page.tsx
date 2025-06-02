@@ -32,7 +32,7 @@ export default function LoginPage() {
       >
         <div className="text-center">
           <h1 className="text-2xl font-semibold text-zinc-900">Easy Saga Admin</h1>
-          <p className="text-sm text-zinc-500">Sign in to manage your saga systems</p>
+          <p className="text-sm text-zinc-500">Please login to manage your saga systems 😄</p>
         </div>
 
         <div>
