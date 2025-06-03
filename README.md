@@ -69,11 +69,27 @@ No CLI. No YAML editing. Just build systems and services, choose your infrastruc
 ### ⏳ In Progress
 - [ ] EZ Saga Admin
 
-### 🍀 Backlog
-- [ ] Backend API
-- [ ] Saga Engine
-- [ ] GitOps Export
-- [ ] Monitoring (integration planned)
+📅 Upcoming Tasks (Short-term)
+
+- Develop visual graphs
+(Illustrating Saga flows.)
+
+- Implement Saga compensation logic
+(Explore orchestration patterns.)
+
+- Define comprehensive Kubernetes configurations
+(Cover Kafka, Redis, MySQL.)
+
+-----------------------------------
+🚀 Future Tasks (Medium & Long-term)
+- Backend integration
+(Transition from local storage mocks.)
+
+- CI/CD pipeline refinement
+(Leverage Firebase or Cloud Run.)
+
+- Dashboard and operational monitoring
+(Real-time system health checks.)
 
 
 ---
