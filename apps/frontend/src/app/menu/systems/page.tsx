@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import CreateSystemModal from "./create_system_modal";
 import SystemTable from "./system_table";
 import {System} from "@/types/system";
@@ -10,12 +10,15 @@ import {PrimaryButton} from "@/ui/components";
 
 export const dynamic = "force-static";
 
-export default function SystemManagerPage() {
+export default function SystemPage() {
     const [systems, setSystems] = useState<System[]>([]);
     const [openModal, setOpenModal] = useState(false);
     const [selectedSystem, setSelectedSystem] = useState<System | null>(null);
+    const setActiveTab = useSidebarStore((s) => s.setActiveTab);
 
-    const activeTab = useSidebarStore((s) => s.activeTab);
+    useEffect(() => {
+        setActiveTab('systems');
+    }, [setActiveTab]);
 
     // Open modal for new systems
     const handleNew = () => {
@@ -55,34 +58,30 @@ export default function SystemManagerPage() {
 
     return (
         <AppLayout>
-            {activeTab === "systems" || activeTab === "dashboard" ? (
-                <>
-                    <div className="flex flex-wrap gap-4 mb-4 justify-between items-center">
-                        <div className="flex gap-4">
-                            <PrimaryButton onClick={handleNew}>
-                                + New System
-                            </PrimaryButton>
-                        </div>
+            <div>
+                <div className="flex flex-wrap gap-4 mb-4 justify-between items-center">
+                    <div className="flex gap-4">
+                        <PrimaryButton onClick={handleNew}>
+                            + New System
+                        </PrimaryButton>
                     </div>
+                </div>
 
-                    <SystemTable
-                        systems={systems}
-                        onEdit={handleEdit}
-                        onToggleStatus={handleToggleStatus}
+                <SystemTable
+                    systems={systems}
+                    onEdit={handleEdit}
+                    onToggleStatus={handleToggleStatus}
+                />
+
+                {openModal && (
+                    <CreateSystemModal
+                        open={openModal}
+                        onClose={() => setOpenModal(false)}
+                        initialData={selectedSystem}
+                        onSave={handleSave}
                     />
-
-                    {openModal && (
-                        <CreateSystemModal
-                            open={openModal}
-                            onClose={() => setOpenModal(false)}
-                            initialData={selectedSystem}
-                            onSave={handleSave}
-                        />
-                    )}
-                </>
-            ) : (
-                <div className="text-white">Coming soon: {activeTab}</div>
-            )}
+                )}
+            </div>
         </AppLayout>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {AppLayout} from "@/app/layout/app_layout";
 import {useSidebarStore} from "@/stores/global_store";
 import {Service} from "@/types/service";
@@ -10,10 +10,15 @@ import {PrimaryButton} from "@/ui/components";
 
 export const dynamic = "force-static";
 
-export default function ServiceManagerPage() {
+export default function ServicePage() {
     const [services, setService] = useState<Service[]>([]);
     const [selectedService, setSelectedService] = useState<Service | null>(null);
     const [openPanel, setOpenPanel] = useState(false);
+    const setActiveTab = useSidebarStore((s) => s.setActiveTab);
+
+    useEffect(() => {
+        setActiveTab('services');
+    }, [setActiveTab]);
 
     const handleNew = () => {
         setSelectedService(null);
@@ -33,42 +38,36 @@ export default function ServiceManagerPage() {
         setOpenPanel(false);
     };
 
-    const activeTab = useSidebarStore((s) => s.activeTab);
-
     return (
         <AppLayout>
-            {activeTab === "services" || activeTab === "dashboard" ? (
-                <div>
-                    <div className="flex flex-wrap gap-4 mb-4 justify-between items-center">
-                        <div className="flex gap-4">
-                            <PrimaryButton onClick={handleNew}>
-                                + New Service
-                            </PrimaryButton>
-                        </div>
+            <div>
+                <div className="flex flex-wrap gap-4 mb-4 justify-between items-center">
+                    <div className="flex gap-4">
+                        <PrimaryButton onClick={handleNew}>
+                            + New Service
+                        </PrimaryButton>
                     </div>
-
-                    <ServiceTable services={services} onView={(service) => {
-                        setSelectedService(service);
-                        setOpenPanel(true);
-                    }}/>
-
-                    {openPanel && (
-                        <div
-                            className="fixed inset-y-0 right-0 w-full max-w-xl bg-white border-l shadow-2xl z-50 overflow-y-auto">
-                            <CreateServicePanel
-                                initialData={selectedService}
-                                onClose={() => {
-                                    setSelectedService(null);
-                                    setOpenPanel(false);
-                                }}
-                                onSave={handleSave}
-                            />
-                        </div>
-                    )}
                 </div>
-            ) : (
-                <div className="text-white">Coming soon: {activeTab}</div>
-            )}
+
+                <ServiceTable services={services} onView={(service) => {
+                    setSelectedService(service);
+                    setOpenPanel(true);
+                }}/>
+
+                {openPanel && (
+                    <div
+                        className="fixed inset-y-0 right-0 w-full max-w-xl bg-white border-l shadow-2xl z-50 overflow-y-auto">
+                        <CreateServicePanel
+                            initialData={selectedService}
+                            onClose={() => {
+                                setSelectedService(null);
+                                setOpenPanel(false);
+                            }}
+                            onSave={handleSave}
+                        />
+                    </div>
+                )}
+            </div>
         </AppLayout>
     );
 }
