@@ -1,4 +1,4 @@
-export interface SystemFormData {
+export interface System {
     systemId: string;
     displayName: string;
     description?: string;

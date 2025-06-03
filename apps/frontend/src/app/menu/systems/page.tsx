@@ -3,7 +3,7 @@
 import {useState} from "react";
 import CreateSystemModal from "./create_system_modal";
 import SystemTable from "./system_table";
-import {SystemFormData} from "@/types/system";
+import {System} from "@/types/system";
 import {useSidebarStore} from "@/stores/global_store";
 import {AppLayout} from "@/app/layout/app_layout";
 import {PrimaryButton} from "@/ui/components";
@@ -11,9 +11,9 @@ import {PrimaryButton} from "@/ui/components";
 export const dynamic = "force-static";
 
 export default function SystemManagerPage() {
-    const [systems, setSystems] = useState<SystemFormData[]>([]);
+    const [systems, setSystems] = useState<System[]>([]);
     const [openModal, setOpenModal] = useState(false);
-    const [selectedSystem, setSelectedSystem] = useState<SystemFormData | null>(null);
+    const [selectedSystem, setSelectedSystem] = useState<System | null>(null);
 
     const activeTab = useSidebarStore((s) => s.activeTab);
 
@@ -24,7 +24,7 @@ export default function SystemManagerPage() {
     };
 
     // Open modal for edit
-    const handleEdit = (system: SystemFormData) => {
+    const handleEdit = (system: System) => {
         setSelectedSystem(system);
         setOpenModal(true);
     };
@@ -41,7 +41,7 @@ export default function SystemManagerPage() {
     };
 
     // Save or update systems
-    const handleSave = (form: SystemFormData) => {
+    const handleSave = (form: System) => {
         setSystems((prev) => {
             const exists = prev.find((s) => s.systemId === form.systemId);
             if (exists) {

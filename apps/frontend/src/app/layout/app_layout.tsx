@@ -14,7 +14,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({children}) =
                         {children}
                     </main>
                     <footer className="bg-slate-800/90 text-white text-center py-2 text-sm border-t border-white/10">
-                        EasySaga © 2025
+                        EZ Saga © 2025
                     </footer>
                 </div>
             </div>

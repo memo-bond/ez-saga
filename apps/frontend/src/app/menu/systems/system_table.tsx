@@ -1,10 +1,10 @@
 "use client";
 
-import {SystemFormData} from "@/types/system";
+import {System} from "@/types/system";
 
 interface SystemTableProps {
-    systems: SystemFormData[];
-    onEdit: (system: SystemFormData) => void;
+    systems: System[];
+    onEdit: (system: System) => void;
     onToggleStatus: (systemId: string, currentlyActive: boolean) => void;
 }
 

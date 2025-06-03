@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useState, useEffect} from "react";
-import {SystemFormData} from "@/types/system";
+import {System} from "@/types/system";
 import {
     InputField,
     ToggleCheckbox,
@@ -15,12 +15,12 @@ import {
 interface CreateSystemModalProps {
     open: boolean;
     onClose: () => void;
-    initialData: SystemFormData | null;
-    onSave: (form: SystemFormData) => void;
+    initialData: System | null;
+    onSave: (form: System) => void;
 }
 
 export default function CreateSystemModal({open, onClose, initialData, onSave}: CreateSystemModalProps) {
-    const [form, setForm] = useState<SystemFormData>({
+    const [form, setForm] = useState<System>({
         systemId: "",
         displayName: "",
         description: "",
@@ -46,7 +46,7 @@ export default function CreateSystemModal({open, onClose, initialData, onSave}: 
         if (initialData) setForm(initialData);
     }, [initialData]);
 
-    const handleChange = (field: keyof SystemFormData, value: string|boolean) => {
+    const handleChange = (field: keyof System, value: string|boolean) => {
         setForm((prev) => ({...prev, [field]: value}));
     };
 
