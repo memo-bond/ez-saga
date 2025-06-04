@@ -1,9 +1,8 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {AppLayout} from "@/app/layout/app_layout";
 import {useSidebarStore} from "@/stores/global_store";
-import {Service} from "@/types/service";
 import {PrimaryButton} from "@/ui/components";
 
 export const dynamic = "force-static";
