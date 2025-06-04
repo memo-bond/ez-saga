@@ -6,7 +6,7 @@
 
 **EZ Saga** is a developer-first platform to define, manage, and deploy distributed systems with the **Saga Compensation Pattern** — all through a clean, modern UI.
 
-No CLI. No YAML editing. Just build systems and services, choose your infrastructure (Redis, MySQL, Kafka, Grafana...), and let EZ Saga generate and manage everything — from Velocity-based Kubernetes manifests to Kafka-driven orchestration.
+No CLI. No YAML editing. Just build systems and services, choose your infrastructure (Redis, MySQL, Kafka, Grafana...), and let EZ Saga generate and manage everything — from Velocity-based Kubernetes manifests to Event Driven system.
 
 ---
 
