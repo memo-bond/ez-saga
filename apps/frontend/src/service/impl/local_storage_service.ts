@@ -21,7 +21,7 @@ export const LocalStorageServiceAPI: ServiceAPI = {
     },
 
     async saveService(service: Service): Promise<void> {
-        let newService = { ...service };
+        const newService = { ...service };
 
         // Assign auto ID if new
         if (!newService.id) {

@@ -19,7 +19,7 @@ export const LocalStorageSystemAPI: SystemAPI = {
     },
 
     async saveSystem(system: System): Promise<void> {
-        let newSystem = { ...system };
+        const newSystem = { ...system };
         if (!newSystem.systemId) {
             newSystem.systemId = this.getNextSystemId().toString();
         }

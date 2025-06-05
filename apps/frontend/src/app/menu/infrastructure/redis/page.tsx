@@ -14,7 +14,7 @@ export default function InfrastructureRedisPage() {
     useEffect(() => {
         setActiveTab('infrastructure');
         setSubActiveTab('redis');
-    }, [setActiveTab]);
+    }, [setActiveTab, setSubActiveTab]);
 
 
     return (

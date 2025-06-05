@@ -14,7 +14,7 @@ export default function NetworkNginxPage() {
     useEffect(() => {
         setActiveTab('network');
         setSubActiveTab('nginx');
-    }, [setActiveTab]);
+    }, [setActiveTab, setSubActiveTab]);
 
 
     return (

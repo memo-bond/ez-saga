@@ -43,8 +43,12 @@ export default function ServicePage() {
             });
             await fetchServices();
             setOpenPanel(false);
-        } catch (error: any) {
-            setErrorMessage(error.message || "Failed to save service.");
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+            } else {
+                setErrorMessage("Failed to save service.");
+            }
         }
     };
 
