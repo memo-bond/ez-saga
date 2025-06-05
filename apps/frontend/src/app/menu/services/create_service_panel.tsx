@@ -62,11 +62,6 @@ export default function CreateServicePanel({initialData, onClose, onSave}: Creat
                 <form onSubmit={handleSubmit}>
 
                     <SectionHeader title="Basic Information" colorClass="text-cyan-400 border-cyan-400/30"/>
-                    <div>
-                        <label className="block text-xs mb-1">Service ID</label>
-                        <InputField value={form.id || ''}
-                                    onChange={(e) => handleChange('id', e.target.value)}/>
-                    </div>
 
                     <div>
                         <label className="block text-xs mb-1">Service Name</label>

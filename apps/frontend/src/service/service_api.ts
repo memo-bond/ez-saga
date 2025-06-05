@@ -1,7 +1,10 @@
-import {System} from "@/types/system";
+import {Service} from "@/types/service";
 
-export interface SystemAPI {
-    getSystems(): Promise<System[]>;
+export interface ServiceAPI {
 
-    saveSystem(system: System): Promise<void>;
+    getNextServiceId(): Promise<number>;
+
+    getServices(): Promise<Service[]>;
+
+    saveService(service: Service): Promise<void>;
 }

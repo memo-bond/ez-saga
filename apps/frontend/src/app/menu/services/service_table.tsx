@@ -71,7 +71,7 @@ export default function ServiceTable({services, onView}: Props) {
                                     className="border border-cyan-400/30 text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 hover:border-cyan-400/50 transition-all duration-200 hover:scale-105"
                                     onClick={() => onView(svc)}
                                 >
-                                    View
+                                    Edit
                                 </PrimaryButton>
                             </div>
                         </div>

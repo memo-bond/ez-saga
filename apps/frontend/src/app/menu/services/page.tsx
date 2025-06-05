@@ -7,36 +7,47 @@ import {Service} from "@/types/service";
 import ServiceTable from "./service_table";
 import CreateServicePanel from "./create_service_panel";
 import {PrimaryButton} from "@/ui/components";
+import {LocalStorageServiceAPI} from "@/service/impl/local_storage_service";
+import ErrorPopup from "@/ui/error_popup";
 
 export const dynamic = "force-static";
 
 export default function ServicePage() {
-    const [services, setService] = useState<Service[]>([]);
+    const [services, setServices] = useState<Service[]>([]);
     const [selectedService, setSelectedService] = useState<Service | null>(null);
     const [openPanel, setOpenPanel] = useState(false);
     const setActiveTab = useSidebarStore((s) => s.setActiveTab);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
     useEffect(() => {
         setActiveTab('services');
+        void fetchServices();
     }, [setActiveTab]);
+
+    const fetchServices = async () => {
+        const data = await LocalStorageServiceAPI.getServices();
+        setServices(data);
+    };
 
     const handleNew = () => {
         setSelectedService(null);
         setOpenPanel(true);
     }
 
-    // Save or update systems
-    const handleSave = (form: Service) => {
-        setService((prev) => {
-            const exists = prev.find((s) => s.id === form.id);
-            if (exists) {
-                return prev.map((s) => (s.id === form.id ? form : s));
-            } else {
-                return [...prev, {...form, status: 'ACTIVE'}];
-            }
-        });
-        setOpenPanel(false);
+    const handleSave = async (form: Service) => {
+        try {
+            await LocalStorageServiceAPI.saveService({
+                ...form,
+                status: form.status || 'ACTIVE',
+            });
+            await fetchServices();
+            setOpenPanel(false);
+        } catch (error: any) {
+            setErrorMessage(error.message || "Failed to save service.");
+        }
     };
+
 
     return (
         <AppLayout>
@@ -68,6 +79,12 @@ export default function ServicePage() {
                     </div>
                 )}
             </div>
+            {errorMessage && (
+                <ErrorPopup
+                    message={errorMessage}
+                    onClose={() => setErrorMessage(null)}
+                />
+            )}
         </AppLayout>
     );
 }
