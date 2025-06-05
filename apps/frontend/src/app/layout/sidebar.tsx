@@ -32,7 +32,7 @@ const menuItems: MenuItem[] = [
         label: "Infrastructure",
         icon: Cloud,
         children: [
-            { id: "kafka", label: "Kafka", icon: CircuitBoard },
+            { id: "kafka", label: "Kafka Topic", icon: CircuitBoard },
             { id: "redis", label: "Redis", icon: Database },
         ],
     },
