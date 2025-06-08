@@ -15,7 +15,7 @@ export const HeaderMenu: React.FC = () => {
                         <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-400 to-cyan-500 flex items-center justify-center">
                             <span className="text-white text-sm font-semibold">JD</span>
                         </div>
-                        <span className="text-white text-sm">John Doe</span>
+                        <span className="text-white text-sm">Lam Le</span>
                         <Settings size={16} className="text-white/50 hover:text-white cursor-pointer" />
                     </div>
                 </div>
