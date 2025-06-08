@@ -1,7 +1,7 @@
 import {ServiceAPI} from "@/service/service_api";
 import {Service} from "@/types/service";
 
-const LOCAL_SYSTEMS_KEY = 'ez-saga.services';
+const LOCAL_SERVICES_KEY = 'ez-saga.services';
 const SERVICE_ID_COUNTER_KEY = 'ez-saga.service_id_counter';
 
 export const LocalStorageServiceAPI: ServiceAPI = {
@@ -13,15 +13,16 @@ export const LocalStorageServiceAPI: ServiceAPI = {
         return nextId;
     },
 
-    async getServices() {
-        const raw = localStorage.getItem(LOCAL_SYSTEMS_KEY);
+    async getServices(selectedSystemId: string) {
+        const raw = localStorage.getItem(LOCAL_SERVICES_KEY);
         const data: Service[] = raw ? JSON.parse(raw) : [];
-        return [...data].sort((s1, s2) => Number(s1.id) - Number(s2.id));
-
+        return [...data]
+            .sort((s1, s2) => Number(s1.id) - Number(s2.id))
+            .filter((s) => s.systemId === selectedSystemId);
     },
 
     async saveService(service: Service): Promise<void> {
-        const newService = { ...service };
+        const newService = {...service};
 
         // Assign auto ID if new
         if (!newService.id) {
@@ -30,11 +31,16 @@ export const LocalStorageServiceAPI: ServiceAPI = {
         }
 
         // Fetch existing services
-        const services: Service[] = await this.getServices();
+        const services: Service[] = await getAllService();
 
         // 🔐 Check name uniqueness (exclude current service if editing)
         const isDuplicate = services.some(s =>
-            s.name === newService.name && s.id !== newService.id
+            // same system
+            s.systemId === newService.systemId
+            // same name
+            && s.name === newService.name
+            // not itself
+            && s.id !== newService.id
         );
 
         if (isDuplicate) {
@@ -46,7 +52,12 @@ export const LocalStorageServiceAPI: ServiceAPI = {
             .filter(s => s.id !== newService.id)
             .concat(newService);
 
-        localStorage.setItem(LOCAL_SYSTEMS_KEY, JSON.stringify(updated));
-    }
+        localStorage.setItem(LOCAL_SERVICES_KEY, JSON.stringify(updated));
+    },
+};
 
+const getAllService = async (): Promise<Service[]> => {
+    const raw = localStorage.getItem(LOCAL_SERVICES_KEY);
+    const data = raw ? JSON.parse(raw) : [];
+    return data;
 };

@@ -71,9 +71,6 @@ export default function CreateSystemModal({open, onClose, initialData, onSave}: 
                     <section className="space-y-4">
                         <SectionHeader title="Basic Information" colorClass="text-cyan-400 border-cyan-400/30"/>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <InputField label="System ID" value={form.systemId}
-                                        onChange={(e) => handleChange("systemId", e.target.value)} required
-                                        disabled={!!initialData} placeholder="system-id-123"/>
                             <InputField label="Display Name" value={form.displayName}
                                         onChange={(e) => handleChange("displayName", e.target.value)} required
                                         placeholder="My Payment System"/>

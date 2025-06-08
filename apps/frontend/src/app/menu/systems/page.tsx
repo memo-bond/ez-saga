@@ -7,6 +7,8 @@ import {System} from "@/types/system";
 import {useSidebarStore} from "@/stores/global_store";
 import {AppLayout} from "@/app/layout/app_layout";
 import {PrimaryButton} from "@/ui/components";
+import {LocalStorageSystemAPI} from "@/service/impl/local_storage_system";
+import ErrorPopup from "@/ui/error_popup";
 
 export const dynamic = "force-static";
 
@@ -15,10 +17,17 @@ export default function SystemPage() {
     const [openModal, setOpenModal] = useState(false);
     const [selectedSystem, setSelectedSystem] = useState<System | null>(null);
     const setActiveTab = useSidebarStore((s) => s.setActiveTab);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     useEffect(() => {
         setActiveTab('systems');
+        void fetchSystems();
     }, [setActiveTab]);
+
+    const fetchSystems = async () => {
+        const data = await LocalStorageSystemAPI.getSystems();
+        setSystems(data);
+    }
 
     // Open modal for new systems
     const handleNew = () => {
@@ -44,16 +53,21 @@ export default function SystemPage() {
     };
 
     // Save or update systems
-    const handleSave = (form: System) => {
-        setSystems((prev) => {
-            const exists = prev.find((s) => s.systemId === form.systemId);
-            if (exists) {
-                return prev.map((s) => (s.systemId === form.systemId ? form : s));
+    const handleSave = async (form: System) => {
+        try {
+            await LocalStorageSystemAPI.saveSystem({
+                ...form,
+                status: form.status || 'ACTIVE',
+            });
+            await fetchSystems();
+            setOpenModal(false);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
             } else {
-                return [...prev, {...form, status: "active"}];
+                setErrorMessage("Failed to save system.");
             }
-        });
-        setOpenModal(false);
+        }
     };
 
     return (
@@ -82,6 +96,12 @@ export default function SystemPage() {
                     />
                 )}
             </div>
+            {errorMessage && (
+                <ErrorPopup
+                    message={errorMessage}
+                    onClose={() => setErrorMessage(null)}
+                />
+            )}
         </AppLayout>
     );
 }

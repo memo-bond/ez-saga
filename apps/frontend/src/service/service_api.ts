@@ -4,7 +4,7 @@ export interface ServiceAPI {
 
     getNextServiceId(): Promise<number>;
 
-    getServices(): Promise<Service[]>;
+    getServices(selectedSystemId: string): Promise<Service[]>;
 
     saveService(service: Service): Promise<void>;
 }

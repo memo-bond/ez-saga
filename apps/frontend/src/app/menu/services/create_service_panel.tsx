@@ -3,14 +3,16 @@
 import React, {useEffect, useState} from 'react';
 import {Service} from '@/types/service';
 import {Button, InputField, PrimaryButton, SectionHeader, TextAreaField} from "@/ui/components";
+import {System} from "@/types/system";
 
 interface CreateServicePanelProps {
     initialData: Service | null;
+    selectedSystem: System;
     onClose: () => void;
     onSave: (form: Service) => void;
 }
 
-export default function CreateServicePanel({initialData, onClose, onSave}: CreateServicePanelProps) {
+export default function CreateServicePanel({initialData, selectedSystem, onClose, onSave}: CreateServicePanelProps) {
     const [form, setForm] = useState<Service>({
         circuitBreakerEnabled: false,
         compensateTopic: "",
@@ -31,6 +33,7 @@ export default function CreateServicePanel({initialData, onClose, onSave}: Creat
     });
 
     useEffect((): void => {
+        console.log('initialData: ', initialData);
         if (initialData)
             setForm(initialData);
     }, [initialData])
@@ -41,6 +44,8 @@ export default function CreateServicePanel({initialData, onClose, onSave}: Creat
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        form.systemId = selectedSystem.systemId;
+        console.log('Save form: ', form);
         onSave(form);
         onClose();
     };
@@ -69,9 +74,8 @@ export default function CreateServicePanel({initialData, onClose, onSave}: Creat
                                     onChange={(e) => handleChange('name', e.target.value)}/>
                     </div>
                     <div>
-                        <label className="block text-xs mb-1">System ID</label>
-                        <InputField value={form.systemId || ''}
-                                    onChange={(e) => handleChange('systemId', e.target.value)}/>
+                        <label className="block text-xs mb-1">System</label>
+                        <InputField value={selectedSystem.displayName || ''} readOnly={true}/>
                     </div>
                     <div className="mt-4">
                         <label className="block text-xs mb-1">Description</label>

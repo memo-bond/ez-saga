@@ -27,5 +27,5 @@ export interface Service {
     updatedAt?: Date;
 
     // Optional relationships
-    systemId?: string;                // Foreign key to System
+    systemId: string;                // Foreign key to System
 }

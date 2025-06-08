@@ -15,16 +15,35 @@ export const LocalStorageSystemAPI: SystemAPI = {
 
     async getSystems() {
         const raw = localStorage.getItem(LOCAL_SYSTEMS_KEY);
-        return raw ? JSON.parse(raw) : [];
+        const data: System[] = raw ? JSON.parse(raw) : [];
+        return [...data].sort((s1, s2) => Number(s1.systemId) - Number(s2.systemId));
     },
 
     async saveSystem(system: System): Promise<void> {
         const newSystem = { ...system };
+
+        // Assign auto ID if new
         if (!newSystem.systemId) {
-            newSystem.systemId = this.getNextSystemId().toString();
+            const nextId = await this.getNextSystemId();
+            newSystem.systemId = nextId.toString();
         }
-        const systems = await this.getSystems();
-        const updated = systems.filter(s => s.systemId !== newSystem.systemId).concat(newSystem);
+
+        // Fetch existing systems
+        const systems: System[] = await this.getSystems();
+
+        // 🔐 Check name uniqueness (exclude current service if editing)
+        const isDuplicate = systems.some(s =>
+            s.displayName === newSystem.displayName && s.systemId !== newSystem.systemId
+        );
+
+        if (isDuplicate)
+            throw new Error(`Service name "${newSystem.namespace}" already exists.`);
+
+        // Proceed with save
+        const updated = systems
+            .filter(s => s.systemId !== newSystem.systemId)
+            .concat(newSystem);
+
         localStorage.setItem(LOCAL_SYSTEMS_KEY, JSON.stringify(updated));
-    },
+    }
 };

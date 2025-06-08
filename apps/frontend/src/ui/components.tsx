@@ -8,15 +8,20 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     className?: string;
 }
 
-export const InputField = ({ label, className, ...props }: InputFieldProps) => (
+export const InputField = ({ label, className, readOnly, ...props }: InputFieldProps) => (
     <div>
         {label && <label className="block text-sm font-medium text-gray-300 mb-2">{label}</label>}
         <input
             {...props}
+            readOnly={readOnly}
             className={clsx(
-                "w-full px-4 py-3 bg-slate-800/50 border border-white/10 rounded-lg " +
-                "text-white placeholder-gray-400 focus:ring-2 focus:border-transparent transition-all duration-200",
+                "w-full px-4 py-3 rounded-lg transition-all duration-200",
+                "text-white placeholder-gray-400",
+                "border border-white/10",
+                "bg-slate-800/50 focus:ring-2 focus:border-transparent",
                 props.type === "text" && "font-mono",
+                readOnly &&
+                "cursor-not-allowed opacity-70 bg-gradient-to-r from-slate-800 to-slate-700 border-white/20 shadow-inner",
                 className
             )}
         />
